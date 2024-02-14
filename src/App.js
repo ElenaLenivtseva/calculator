@@ -1,8 +1,8 @@
 import { useReducer } from "react";
-import DigitButton from "./DigitButton";
+import DigitButton from "./components/DigitButton";
 // ошибка была здесь
-import OperationButton from "./OperationButton";
-import "./styles.css";
+import OperationButton from "./components/OperationButton";
+import "./styles.scss";
 
 export const ACTIONS = {
   ADD_DIGIT: "add_digit",
@@ -134,20 +134,20 @@ function App() {
     {}
   );
   return (
-    <div className="calculator-grid">
-      <div className="output">
-        <div className="previous-operand">
+    <div className="calculator calculator__grid">
+      <div className="calculator__output">
+        <div className="calculator__previous-operand">
           {formatOperand(previousOperand)} {operation}
         </div>
-        <div className="current-operand">{formatOperand(currentOperand)}</div>
+        <div className="calculator__current-operand">{formatOperand(currentOperand)}</div>
       </div>
       <button
-        className="span-two"
+        className="calculator__button calculator__span-two"
         onClick={() => dispatch({ type: ACTIONS.CLEAR })}
       >
         AC
       </button>
-      <button onClick={() => dispatch({ type: ACTIONS.DELETE_DIGIT })}>
+      <button className='calculator__button' onClick={() => dispatch({ type: ACTIONS.DELETE_DIGIT })}>
         DEL
       </button>
       <OperationButton operation="/" dispatch={dispatch} />
@@ -166,7 +166,7 @@ function App() {
       <DigitButton digit="." dispatch={dispatch} />
       <DigitButton digit="0" dispatch={dispatch} />
       <button
-        className="span-two"
+        className="calculator__button calculator__span-two"
         onClick={() => dispatch({ type: ACTIONS.EVALUATE })}
       >
         =
